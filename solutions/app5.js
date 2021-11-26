@@ -11,6 +11,8 @@ const getProductData = () => productData;
  */
 const sortProducts = (products = [{ name: '' }]) => {
     // itt dolgozz
+    const pr = products.sort((a, b) => a.name.localeCompare(b.name) )
+    return pr
 };
 
 /**
@@ -39,10 +41,17 @@ const sortProducts = (products = [{ name: '' }]) => {
  * @param {string} url a távoli erőforrás címe, ahonnan lekérjük az adatokat
  */
 
+const getProducts = (url = '') => {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => productData = sortProducts(data) )
+    .catch( err => console.error(err))
+
+}
 /**
  * TODO: exportáld ki helyesen a getProducts függvényt!
  */
 export {
-    
+    getProducts,
     getProductData,
 }
